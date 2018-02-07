@@ -4,12 +4,17 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 
-Vue.config.productionTip = false
+import  {VueEditor}  from 'vue2-quill-editor'
+
+
+Vue.config.productionTip = false;
+Vue.config.devtools =true;
+
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
-  components: { App },
+  components: { App},
   template: '<App/>'
 })
