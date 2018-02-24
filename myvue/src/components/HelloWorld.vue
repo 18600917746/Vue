@@ -1,11 +1,16 @@
 <template>
   <div class="hello">
-    <vue-editor v-loading="loading"
-                v-model="content"
+    <!--vuex -内 方法 使用-->
+    <button @click="$store.commit('jia')">+</button>
+    <button @click="$store.commit('jian')">-</button>
+    <!--vuex -内 参数 使用-->
+    {{ $store.state.count }}
+    <vue-editor v-model="content"
                 :config="editorOption"
                 @blur="onEditorBlur($event)"
                 @focus="onEditorFocus($event)"
                 @ready="onEditorReady($event)"></vue-editor>
+
   </div>
 </template>
 
@@ -17,7 +22,6 @@ export default {
   data () {
     return {
       content: '<h1>Some initial content</h1>',
-      loading:true,
       editorOption:{
 
       }
