@@ -1,8 +1,8 @@
 <template>
-  <div class="slide">
+  <div id="home">
     <Layout>
       <Sider ref="side1" hide-trigger collapsible :collapsed-width="78" v-model="isCollapsed">
-        <Menu active-name="1-2" theme="dark" width="auto" :class="menuitemClasses">
+        <Menu active-name="1-1" theme="dark" width="auto" :class="menuitemClasses">
           <router-link :to="item.link" v-for="(item,index) in slideObj" :key="index">
             <MenuItem :name="item.MenuItem">
               <Icon :type="item.icon"></Icon>
@@ -25,21 +25,21 @@
 </template>
 <script>
   export default {
-    name: 'slide' ,
+    name: 'home' ,
     data() {
       return {
         isCollapsed: false ,
         heig: '460px' ,
         //  TODO: slide 数据对象
         slideObj: [{
-          icon: 'ios-navigate' ,
-          title: 'Option 1' ,
+          icon: 'icon iconfont icon-qianduanyingyongmoban' ,
+          title: '前 端' ,
           link: 'option1' ,
           MenuItem: '1-1'
         } ,
           {
-            icon: 'search' ,
-            title: 'Option 2' ,
+            icon: 'icon iconfont icon-python' ,
+            title: 'Python' ,
             link: 'option2' ,
             MenuItem: '1-2'
           }
@@ -63,25 +63,31 @@
     methods: {
       collapsedSider() {
         this.$refs.side1.toggleCollapse();
+      },
+      init(){
+        this.ajax('123',{},function () {
+
+        },'post');
       }
-    }
-    , mounted: function () {
-      this.heig = (window.innerHeight - 106) + 'px';
+    } ,
+    watch: {
+      '$route' (to, from) {
+        console.log(to,from)
+      }
+    },
+    mounted: function () {
+      this.init();
+      this.heig = (window.innerHeight - 104) + 'px';
     }
   };
 </script>
-<style scoped>
+<style scoped lang="less">
   .layout {
     border: 1px solid #d7dde4;
     background: #f5f7f9;
     position: relative;
     border-radius: 4px;
     overflow: hidden;
-  }
-
-  .layout a {
-    color: #fff;
-    display: block;
   }
 
   .layout-header-bar {
@@ -122,9 +128,12 @@
     font-size: 16px;
   }
 
-  .collapsed-menu span {
-    width: 0px;
-    transition: width .2s ease;
+  .collapsed-menu {
+    span {
+      width: 0px;
+      transition: width .2s ease;
+    }
+
   }
 
   .collapsed-menu i {
